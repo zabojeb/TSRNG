@@ -5,3 +5,4 @@ client_artifacts
 data
 testing
 scripts
+.DS_Store
