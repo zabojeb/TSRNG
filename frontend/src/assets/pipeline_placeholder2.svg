@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 240">
+  <rect width="440" height="240" rx="28" fill="#E5E7EB" />
+  <rect x="140" y="90" width="160" height="60" rx="12" fill="#CBD5F5" />
+  <text x="220" y="126" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#475569" text-anchor="middle">
+    Pipeline Placeholder
+  </text>
+</svg>

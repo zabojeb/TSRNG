@@ -1,6 +1,9 @@
 import { useState, useMemo, useEffect } from "react";
 import SourceFlow from "../components/SourceFlow";
 import ResultsPanel from "../components/ResultsPanel";
+import pipelineImg from "../assets/pipeline_placeholder.svg";
+import sourcesImg from "../assets/sources_placeholder.svg";
+import merkleImg from "../assets/merkle_placeholder.svg";
 import {
   collectAndCommit,
   postBeacon,
@@ -157,15 +160,44 @@ function GeneratePage() {
         </p>
       </header>
 
-      <section className="card">
-        <h2 className="text-lg font-semibold text-brand-dark">Визуализация конвейера</h2>
-        <p className="mt-1 text-sm text-slate-500">
-          Источники собираются параллельно, затем через commit, beacon и finalize преобразуются в итоговый поток.
-        </p>
-        <div className="mt-6">
-          <SourceFlow sources={sources} merge={mergeVisual && loading} stage={stage} />
+      <section className="card space-y-6">
+        <div>
+          <h2 className="text-lg font-semibold text-brand-dark">Визуализация конвейера</h2>
+          <p className="mt-1 text-sm text-slate-500">
+            Источники собираются параллельно, затем через commit, beacon и finalize преобразуются в итоговый поток.
+          </p>
         </div>
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        <SourceFlow sources={sources} merge={mergeVisual && loading} stage={stage} />
+        <div className="grid gap-4 md:grid-cols-2">
+          <img
+            src={pipelineImg}
+            alt="Обзор конвейера"
+            className="w-full rounded-3xl border border-slate-200 shadow"
+          />
+          <div className="flex flex-col justify-center gap-3 text-sm text-slate-600">
+            <p>
+              Каждый источник фиксируется с метаданными и хэшами. Merkle-дерево делает данные неизменяемыми, а внешние
+              beacon и VDF добавляют непредсказуемость.
+            </p>
+            <p>
+              После finalize поток битов проходит через HKDF — его можно скачать в текстовом виде и проверять с помощью
+              внешних тестов.
+            </p>
+          </div>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <img
+            src={sourcesImg}
+            alt="Источники энтропии"
+            className="w-full rounded-3xl border border-slate-200 shadow"
+          />
+          <img
+            src={merkleImg}
+            alt="Merkle и доказательства"
+            className="w-full rounded-3xl border border-slate-200 shadow"
+          />
+        </div>
+        <div className="grid gap-4 sm:grid-cols-3">
           {Object.entries(counts).map(([key, value]) => (
             <label key={key} className="flex flex-col gap-2 text-sm">
               <span className="font-medium text-brand-dark">

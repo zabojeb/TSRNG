@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 240">
+  <rect width="440" height="240" rx="28" fill="#E7F0FD" />
+  <rect x="120" y="90" width="200" height="60" rx="12" fill="#D1E4FF" />
+  <text x="220" y="126" font-family="Inter, sans-serif" font-size="18" font-weight="600" fill="#3B82F6" text-anchor="middle">
+    Sources Placeholder
+  </text>
+</svg>

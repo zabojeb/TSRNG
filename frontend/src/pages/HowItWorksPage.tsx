@@ -1,3 +1,7 @@
+import pipelineImg from "../assets/pipeline_placeholder.svg";
+import merkleImg from "../assets/merkle_placeholder.svg";
+import sourcesImg from "../assets/sources_placeholder.svg";
+
 function Step({ title, description, number }: { title: string; description: string; number: number }) {
   return (
     <div className="relative flex flex-col gap-3 rounded-3xl border border-slate-200 bg-gradient-to-br from-white via-brand-light/60 to-white p-6 shadow-lg">
@@ -23,6 +27,7 @@ function HowItWorksPage() {
 
       <div className="grid gap-12 md:grid-cols-2">
         <div className="flex flex-col gap-6">
+          <img src={sourcesImg} alt="Каналы энтропии" className="w-full rounded-3xl border border-slate-200 shadow" />
           <Step
             number={1}
             title="Сбор и фиксация энтропии"
@@ -70,6 +75,7 @@ function HowItWorksPage() {
                 энтропии. Полоса прогресса отображает текущее состояние pipeline.
               </p>
             </div>
+            <img src={pipelineImg} alt="Обзор конвейера" className="mt-6 w-full rounded-3xl border border-slate-200 shadow" />
           </div>
           <div className="rounded-3xl bg-brand-dark/95 p-6 text-brand-light shadow-lg">
             <h2 className="text-lg font-semibold text-brand-yellow">Ключевые ссылки API</h2>
@@ -88,13 +94,14 @@ function HowItWorksPage() {
               </li>
             </ul>
           </div>
-          <div className="gradient-card">
+          <div className="gradient-card space-y-6">
             <h2 className="text-lg font-semibold text-brand-dark">Для регуляторов и аудиторов</h2>
             <p className="mt-3 text-sm text-slate-600">
               Полный пакет (artifact.zip) содержит выборку листьев, доказательства, seed и VDF, а также текстовый файл
               с битами. Интеграцию с TestU01/NIST STS можно выполнять, используя наш текстовый файл и зафиксированные
               параметры. Вся информация доступна по публичным API без дополнительной авторизации.
             </p>
+            <img src={merkleImg} alt="Merkle proof" className="w-full rounded-3xl border border-slate-200 shadow" />
           </div>
         </div>
       </div>

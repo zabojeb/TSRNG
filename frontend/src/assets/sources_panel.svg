@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 240">
+  <defs>
+    <linearGradient id="sourcesBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f4f9ff" />
+      <stop offset="100%" stop-color="#dcecff" />
+    </linearGradient>
+    <style>
+      .bubble { font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 600; font-size: 13px; fill: #0f172a; }
+      .caption { font-family: 'Inter', 'Segoe UI', sans-serif; font-size: 13px; fill: #475569; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect width="440" height="240" rx="28" fill="url(#sourcesBg)" />
+
+  <g>
+    <rect x="80" y="68" width="92" height="58" rx="22" fill="#ffd166" opacity="0.95" />
+    <text class="bubble" x="126" y="103" text-anchor="middle">Beacons</text>
+
+    <rect x="174" y="68" width="92" height="58" rx="22" fill="#ffb347" opacity="0.95" />
+    <text class="bubble" x="220" y="103" text-anchor="middle">Quotes</text>
+
+    <rect x="268" y="68" width="92" height="58" rx="22" fill="#ff9900" opacity="0.95" />
+    <text class="bubble" x="314" y="103" text-anchor="middle">Weather</text>
+
+    <rect x="130" y="142" width="92" height="58" rx="22" fill="#ffbe0b" opacity="0.95" />
+    <text class="bubble" x="176" y="177" text-anchor="middle">Text</text>
+
+    <rect x="234" y="142" width="92" height="58" rx="22" fill="#ffe08a" opacity="0.95" />
+    <text class="bubble" x="280" y="177" text-anchor="middle">Images</text>
+  </g>
+
+  <text class="caption" x="220" y="214">
+    Пять независимых каналов энтропии → один прозрачный поток
+  </text>
+</svg>
