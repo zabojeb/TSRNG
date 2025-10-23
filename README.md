@@ -1,5 +1,7 @@
-
 # TSRNG FastAPI — MVP with Collectors
+
+[Ссылка на скринкаст](https://storage.yandexcloud.net/tsrng-demo/screencast.mov)
+[Презентация](https://storage.yandexcloud.net/tsrng-demo/1_merged.pdf)
 
 ## New endpoint
 `POST /sources/collect-and-commit` — собирает листья из реальных источников (маяки, котировки, погода, вики/гитхаб, изображения) и сразу делает Commit.
@@ -44,18 +46,6 @@
 - `POST /analysis/sequence` — проверка произвольных последовательностей (поддерживаются `data_hex`, `data_base64`, `data_bits`, `data_numbers` с массивом байт или бит).
 - `POST /analysis/upload` — загрузка файла с последовательностью (например, `output.bin`), опционально с `limit_bits`.
 - `POST /verify` — проверка загруженного `package.zip`.
-
-## Скрипт клиента
-В каталоге `scripts/` находится `generate_million_bits.py`, который полностью через HTTP API:
-1. Собирает листья (`/sources/collect-and-commit`);
-2. Получает seed с drand и отправляет в `/rounds/{round_id}/beacon`;
-3. Финализирует тираж на 1 000 000 бит (`/rounds/{round_id}/finalize`);
-4. Сохраняет результат локально и по желанию скачивает `package.zip`.
-
-Запуск:
-```bash
-python scripts/generate_million_bits.py --base-url http://127.0.0.1:8000 --output-bits 1000000
-```
 
 Параметры позволяют менять конфиг сборщика (`--config`), выключать загрузку артефакта (`--skip-artifact`) и настраивать VDF (`--vdf-T`, `--modulus-bits`).
 
@@ -111,6 +101,15 @@ python scripts/generate_million_bits.py --base-url http://127.0.0.1:8000 --outpu
     -d '{"baselines":["secrets","python_random"],"limit_bits":1000000}'
   ```
   В ответе — метрики текущего раунда и эталонных генераторов.
+
+## Запуск Backend
+
+```
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+uvicorn app.main:app --reload
+```
 
 ## Frontend (RandomTrust UI)
 React/Vite SPA находится в каталоге `frontend/` и предоставляет четыре страницы: «Главная», «Генерация», «Анализ», «Как это работает?». Интерфейс обращается к backend по прокси `/api`.
