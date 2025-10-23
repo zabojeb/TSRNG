@@ -34,6 +34,7 @@
 - `GET /rounds/{round_id}/analysis/latest` — последние результаты статистических тестов.
 - `GET /rounds/{round_id}/analysis/history` / `GET /rounds/{round_id}/analysis/history/{entry}` — история повторных прогонов и подробные записи.
 - `POST /analysis/round/{round_id}/heavy` — запуск тяжёлого теста (`dieharder`) над финальным выводом.
+- `POST /analysis/round/{round_id}/compare` — сверка раунда с эталонными генераторами (Python random, os.urandom).
 - `GET /rounds/{round_id}/raw/summary` и `GET /rounds/{round_id}/raw/{stream}/{index}` — доступ к зафиксированным источникам энтропии (с optional `include_raw=true` для base64-полезной нагрузки).
 - `GET /rounds/{round_id}/random-range/history` — журнал всех запросов на генерацию диапазонов.
 - `GET /rounds/{round_id}/selected` — карты выбранных индексов и метаданные листьев.
@@ -103,6 +104,13 @@ python scripts/generate_million_bits.py --base-url http://127.0.0.1:8000 --outpu
     -d '{"test":"dieharder","dieharder_args":["-a","-g","201"]}'
   ```
   Возвращается результат, а подробный отчёт сохраняется в `data/rounds/<round_id>/analysis/heavy/`.
+- Сравнение с базовыми ГСЧ:
+  ```bash
+  curl -X POST http://127.0.0.1:8000/analysis/round/<round_id>/compare \
+    -H "Content-Type: application/json" \
+    -d '{"baselines":["secrets","python_random"],"limit_bits":1000000}'
+  ```
+  В ответе — метрики текущего раунда и эталонных генераторов.
 
 ## Frontend (RandomTrust UI)
 React/Vite SPA находится в каталоге `frontend/` и предоставляет четыре страницы: «Главная», «Генерация», «Анализ», «Как это работает?». Интерфейс обращается к backend по прокси `/api`.

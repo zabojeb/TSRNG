@@ -5,6 +5,7 @@ const links = [
   { to: "/", label: "Главная" },
   { to: "/generate", label: "Генерация" },
   { to: "/analysis", label: "Анализ" },
+  { to: "/history", label: "История раундов" },
   { to: "/how-it-works", label: "Как это работает?" },
 ];
 

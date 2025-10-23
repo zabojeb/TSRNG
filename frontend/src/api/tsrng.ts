@@ -66,3 +66,11 @@ export async function runHeavyTest(roundId: string, args?: string[]) {
   });
   return res.data;
 }
+
+export async function compareRound(roundId: string, limitBits?: number, baselines?: string[]) {
+  const payload: Record<string, any> = {};
+  if (limitBits) payload.limit_bits = limitBits;
+  if (baselines) payload.baselines = baselines;
+  const res = await api.post(`/analysis/round/${roundId}/compare`, payload);
+  return res.data;
+}
